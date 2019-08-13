@@ -1,0 +1,5 @@
+package methodenrefSimInterface;
+
+public interface Weighable {
+    double getWeight();
+}
