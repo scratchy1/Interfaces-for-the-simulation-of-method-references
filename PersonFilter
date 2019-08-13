@@ -1,0 +1,12 @@
+package methodenrefSimInterface;
+
+public class PersonFilter1 implements FilterPredicate<Person>{
+    @Override
+    public boolean isMatching(Person candidate) {
+        return candidate.getName().length() < 5;
+    }
+    @Override
+    public boolean isMatchingWeight(Person candidate) {
+        return candidate.getWeight()<60;
+    }
+}
