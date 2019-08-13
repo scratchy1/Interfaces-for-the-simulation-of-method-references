@@ -1,0 +1,5 @@
+package palindromFilter;
+
+public interface FilterPredicate<T> {
+    boolean isPalindrom( T candidate);
+}
