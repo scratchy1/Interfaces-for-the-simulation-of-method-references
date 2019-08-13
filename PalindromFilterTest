@@ -1,0 +1,23 @@
+package palindromFilter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import methodenrefSimInterface.Person;
+
+public class PalindromFilterTest {
+
+    public static void main(String[] args) {
+        ArrayList<String> source = new ArrayList<String>();
+        source.add(new String("AUUA"));
+        source.add(new String("AUuUA"));
+        source.add(new String("AUAn"));
+        Filter<String> stringFilter = new Filter<>(source);
+        FilterPredicate<String> isPalindrom = new PalindromFilter3();
+        List<String> result = stringFilter.filter(isPalindrom);
+        for (String zeichenkette : result) {
+            System.out.println(zeichenkette);
+        }
+    }
+
+}
