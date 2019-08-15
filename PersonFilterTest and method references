@@ -1,0 +1,42 @@
+package methodenrefSimInterface;
+
+import java.util.ArrayList;
+import java.util.List;
+public class PersonFilterTest {
+
+    public static void main(String[] args) {
+        ArrayList<Person> source = new ArrayList<Person>();
+        source.add(new Person("Alice", 56.3));
+        source.add(new Person("Joe", 77.0));
+        source.add(new Person("Bob", 90.2));
+        source.add(new Person("Jenny", 44.2));
+        source.add(new Person("Anna", 51.9));
+        source.add(new Person("Peter", 84.3));
+        source.add(new Person("George", 69.7));
+        Filter<Person> personFilter = new Filter<>(source);
+        List<Person> shortNameList = personFilter.filter((Person p) -> p.getName().length() < 5);
+        for (Person person : shortNameList) {
+            System.out.println(person.getName());
+        }
+    }
+
+}
+/*Interessant ist hier die Anweisung, in der auf dem von der Variablen
+personFilter referenzierten Objekt die Methode filter aufgerufen wird.
+Diese Methode hat als Typ ihres formalen Parameter den Interfacetyp
+FilterPredicate, welcher genau eine Methode vereinbart, nämlich
+isMatching.
+Die Methode isMatching verlangt als Parameter ein Objekt vom Typ
+Person und liefert als Ergebnis einen Wert vom Typ boolean. Es handelt
+sich also um eine Funktion, die ein Objekt auf einen Wahrheitswert abbildet.
+Und genau eine solche Abbildung beschreibt auch der Ausdruck
+p -> p.getName().length() < 5
+Diesen hätte man zur Vedeutlichung auch folgendermaßen schreiben können:
+(Person p) -> p.getName().length() < 5
+Nötig ist die Angabe, dass p vom Typ Person sein soll, allerdings nicht, da
+der Compiler sie aus dem Verwendungskontext ableiten kann. Der Compiler
+akzeptiert in beiden Varianten den Ausdruck als Erfüllung des Interfaces
+FilterPredicate. Und an der Stelle in der Klasse Filter, an der bisher
+der Methode isMatching eines Objekts vom Typ FilterPredicate ein
+Objekt vom Typ Person übergeben wurde, wird dieses Person-Objekt jetzt
+an diese Abbildungsmethode übergeben.*/
