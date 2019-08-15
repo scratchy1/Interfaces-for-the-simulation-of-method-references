@@ -1,0 +1,31 @@
+package palindromFilter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PalindromTest {
+
+    public static void main(String[] args) {
+
+        ArrayList<String> source = new ArrayList<String>();
+        source.add("Elefant");
+        source.add("Rentner");
+        source.add("Kathedrale");
+        source.add("Regallager");
+        source.add("Regen");
+        Filter<String> paliFilter = new Filter<>(source);
+        FilterPredicate<String> pali = new FilterPredicate<String>() {
+            @Override
+            public boolean isPalindrom(String candidate) {
+                StringBuilder sb = new StringBuilder(candidate);
+                String reverse = sb.reverse().toString();
+                return candidate.equalsIgnoreCase(reverse);
+            }
+        };
+        List<String> result = paliFilter.filter(pali);
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+
+}
